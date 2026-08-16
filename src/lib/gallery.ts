@@ -52,3 +52,27 @@ export function getGalleryImages(): GalleryImage[] {
 
   return images;
 }
+
+/**
+ * Liefert das erste Bild in /public/images/<subPath> (echte Fotos vor
+ * Platzhaltern). So genügt es, ein Foto in den Ordner zu legen – ohne Code
+ * anzufassen. Fällt auf `fallback` zurück, falls der Ordner leer/fehlt.
+ */
+export function getFeatureImage(subPath: string, fallback: string): string {
+  const dir = path.join(process.cwd(), "public", "images", subPath);
+  try {
+    const files = fs
+      .readdirSync(dir)
+      .filter((f) => IMAGE_EXTENSIONS.includes(path.extname(f).toLowerCase()))
+      .sort((a, b) => {
+        const ap = a.startsWith("platzhalter") ? 1 : 0;
+        const bp = b.startsWith("platzhalter") ? 1 : 0;
+        if (ap !== bp) return ap - bp;
+        return a.localeCompare(b, "de");
+      });
+    if (files.length > 0) return `/images/${subPath}/${files[0]}`;
+  } catch {
+    /* Ordner fehlt – Fallback verwenden. */
+  }
+  return fallback;
+}

@@ -1,8 +1,10 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ui/Button";
 import { SITE } from "@/lib/content";
+import { getFeatureImage } from "@/lib/gallery";
 
 export function Hero() {
+  const heroImage = getFeatureImage("hero", "/images/hero/hymer-hero.svg");
   return (
     <section
       id="start"
@@ -11,7 +13,7 @@ export function Hero() {
       {/* Hintergrundbild – echte Außenaufnahme des Hymer (Platzhalter bis Fotos vorliegen). */}
       <div className="absolute inset-0 -z-10">
         <Image
-          src="/images/hero/hymer-hero.svg"
+          src={heroImage}
           alt="Hymer Wohnmobil in ruhiger Landschaft"
           fill
           priority

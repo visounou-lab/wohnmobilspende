@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Section } from "@/components/ui/Section";
+import { getFeatureImage } from "@/lib/gallery";
 
 const paragraphs = [
   "Mein Name ist Elisabeth. Ich bin 78 Jahre alt und österreichische Staatsbürgerin.",
@@ -12,6 +13,7 @@ const paragraphs = [
 ];
 
 export function Story() {
+  const portrait = getFeatureImage("elisabeth", "/images/elisabeth/elisabeth.svg");
   return (
     <Section id="geschichte" className="bg-cream">
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
@@ -19,7 +21,7 @@ export function Story() {
           <div className="relative mx-auto max-w-md overflow-hidden rounded-[var(--radius-card)] shadow-[var(--shadow-soft)]">
             <div className="relative aspect-[4/5]">
               <Image
-                src="/images/elisabeth/elisabeth.svg"
+                src={portrait}
                 alt="Elisabeth"
                 fill
                 sizes="(max-width: 1024px) 90vw, 40vw"
