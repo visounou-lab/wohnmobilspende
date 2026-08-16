@@ -27,7 +27,7 @@ export default function ImpressumPage() {
 
       <h2 className="pt-2 font-serif text-xl text-navy">Kontakt</h2>
       <p>
-        E-Mail: [BITTE ERGÄNZEN: kontakt@wohnmobilspende.com]
+        E-Mail: [BITTE ERGÄNZEN: kontakt@wohnmobilspende.site]
         <br />
         Telefon: [BITTE ERGÄNZEN, optional]
       </p>

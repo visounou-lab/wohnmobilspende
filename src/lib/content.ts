@@ -2,7 +2,7 @@
 
 export const SITE = {
   name: "Wohnmobilspende",
-  domain: "wohnmobilspende.com",
+  domain: "wohnmobilspende.site",
   title: "Hymer Wohnmobil für einen guten Zweck | Wohnmobilspende",
   description:
     "Elisabeth möchte ihrem Hymer Wohnmobil eine zweite Zukunft geben und sucht einen verantwortungsvollen Menschen, eine Familie oder Organisation in Deutschland.",

@@ -3,7 +3,7 @@ import "./globals.css";
 import { SITE } from "@/lib/content";
 import { RevealInit } from "@/components/RevealInit";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wohnmobilspende.com";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wohnmobilspende.site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

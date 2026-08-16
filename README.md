@@ -20,7 +20,7 @@ Die Seite erzählt zuerst Elisabeths Geschichte, stellt dann das Wohnmobil vor u
 - [Verwaltung per E-Mail](#verwaltung-per-e-mail)
 - [Echte Fotos einfügen](#echte-fotos-einfügen)
 - [Deployment auf Vercel](#deployment-auf-vercel)
-- [DNS-Konfiguration (wohnmobilspende.com)](#dns-konfiguration-wohnmobilspendecom)
+- [DNS-Konfiguration (wohnmobilspende.site)](#dns-konfiguration-wohnmobilspendecom)
 - [Sicherheit & Datenschutz](#sicherheit--datenschutz)
 
 ---
@@ -104,7 +104,7 @@ Alle Variablen sind in [`.env.example`](./.env.example) dokumentiert.
 | --------------------------------- | :-----: | ------------ |
 | `DATABASE_URL`                    | ✅ | Neon Pooled-Verbindung (mit `-pooler`) für die Laufzeit |
 | `DIRECT_URL`                      | ✅ | Neon Direktverbindung (ohne `-pooler`) für `prisma db push` |
-| `NEXT_PUBLIC_SITE_URL`            | ✅ | Öffentliche URL, z. B. `https://wohnmobilspende.com` |
+| `NEXT_PUBLIC_SITE_URL`            | ✅ | Öffentliche URL, z. B. `https://wohnmobilspende.site` |
 | `RESEND_API_KEY`                  | ✅ | API-Key für den E-Mail-Versand (ohne: keine Bewerbungs-Mails) |
 | `EMAIL_FROM`                      | ✅ | Absenderadresse (verifizierte Resend-Domain) |
 | `EMAIL_ADMIN`                     | ✅ | Adresse von Elisabeth – hierhin geht jede Bewerbung |
@@ -141,9 +141,9 @@ Datenmodell (Auszug): `Application` (Bewerbungen), `ContactMessage`, `Donation` 
 ## E-Mail – Resend
 
 1. Konto bei [resend.com](https://resend.com) anlegen.
-2. Domain `wohnmobilspende.com` verifizieren (DNS-Einträge setzen).
+2. Domain `wohnmobilspende.site` verifizieren (DNS-Einträge setzen).
 3. API-Key erstellen → `RESEND_API_KEY`.
-4. `EMAIL_FROM` (z. B. `Wohnmobilspende <bewerbung@wohnmobilspende.com>`) und `EMAIL_ADMIN` setzen.
+4. `EMAIL_FROM` (z. B. `Wohnmobilspende <bewerbung@wohnmobilspende.site>`) und `EMAIL_ADMIN` setzen.
 
 Ohne konfiguriertes Resend funktioniert die Bewerbung weiterhin (sie wird gespeichert), es werden lediglich keine E-Mails versendet. Die Bestätigungs-E-Mail enthält **niemals** eine automatische Zusage.
 
@@ -204,9 +204,9 @@ Empfohlen: Fotos als `.webp` oder `.jpg`, Querformat ~1600 px Breite. Anschließ
 
 ---
 
-## DNS-Konfiguration (wohnmobilspende.com)
+## DNS-Konfiguration (wohnmobilspende.site)
 
-Domain in Vercel unter **Settings → Domains** hinzufügen: sowohl `wohnmobilspende.com` als auch `www.wohnmobilspende.com`.
+Domain in Vercel unter **Settings → Domains** hinzufügen: sowohl `wohnmobilspende.site` als auch `www.wohnmobilspende.site`.
 
 Beim Domain-Registrar folgende Einträge setzen (Vercel zeigt die exakten Werte an):
 
