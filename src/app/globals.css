@@ -85,7 +85,6 @@
   transition:
     opacity 0.7s ease-out,
     transform 0.7s ease-out;
-  will-change: opacity, transform;
 }
 .reveal-on .reveal.is-visible {
   opacity: 1;

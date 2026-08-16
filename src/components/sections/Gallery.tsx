@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -100,10 +101,14 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
         ))}
       </div>
 
-      {/* Lightbox */}
-      {lightbox !== null && filtered[lightbox] && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-navy/95 p-4"
+      {/* Lightbox – per Portal in <body>, damit nichts (z. B. die Navigation)
+          darüber liegt und das Bild nicht abgeschnitten wird. */}
+      {lightbox !== null &&
+        filtered[lightbox] &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-navy/95 p-4"
           role="dialog"
           aria-modal="true"
           aria-label="Bildansicht"
@@ -170,8 +175,9 @@ export function Gallery({ images }: { images: GalleryImage[] }) {
               {filtered[lightbox].categoryLabel} · {lightbox + 1} / {filtered.length}
             </figcaption>
           </figure>
-        </div>
-      )}
+          </div>,
+          document.body,
+        )}
     </Section>
   );
 }
