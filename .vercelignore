@@ -1,0 +1,5 @@
+# Secrets niemals hochladen – Variablen kommen aus den Vercel Environment Variables.
+.env
+.env.local
+.env.development
+.env.production
