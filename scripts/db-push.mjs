@@ -28,7 +28,10 @@ const directUrl =
 console.log("[db-push] Wende Prisma-Schema auf die Datenbank an …");
 
 try {
-  execSync("prisma db push --skip-generate", {
+  // --accept-data-loss: erlaubt Schemaänderungen (z. B. entfernte Spalten) im
+  // nicht-interaktiven Build. Da die Verwaltung per E-Mail erfolgt, ist die
+  // Datenbank nur eine Sicherung; kritische Daten liegen in Elisabeths Postfach.
+  execSync("prisma db push --skip-generate --accept-data-loss", {
     stdio: "inherit",
     env: {
       ...process.env,

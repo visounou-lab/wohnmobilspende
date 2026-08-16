@@ -73,6 +73,44 @@ h4 {
   animation: fadeUp 0.6s ease-out both;
 }
 
+/* Sanftes Einblenden beim Scrollen. Wird nur aktiv, wenn JavaScript die
+   Klasse .reveal-on am <html> setzt – ohne JS bleibt alles sofort sichtbar. */
+.reveal-on .reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+.reveal-on .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-on .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Dezenter goldener Trenner unter Überschriften. */
+.gold-divider::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  margin-top: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-soft));
+}
+.gold-divider.is-centered::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Fokus-Sichtbarkeit für Barrierefreiheit. */
 :where(a, button, input, textarea, select, [tabindex]):focus-visible {
   outline: 3px solid var(--color-gold);

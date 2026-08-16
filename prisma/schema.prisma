@@ -11,64 +11,23 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-// Status einer Bewerbung – spiegelt die Dashboard-Kategorien wider.
-enum ApplicationStatus {
-  NEU // Neue Bewerbungen
-  IN_PRUEFUNG // In Prüfung
-  KONTAKT // Kontakt aufnehmen
-  VORAUSWAHL // Vorauswahl
-  NICHT_AUSGEWAEHLT // Nicht ausgewählt
-  AUSGEWAEHLT // Ausgewählt
-}
-
-// Antwortoptionen mit "Ja / Nein / weitere Info" bzw. "abhängig".
-enum TriState {
-  JA
-  NEIN
-  INFO // "Ich benötige weitere Informationen" / "Abhängig vom Standort"
-}
-
+// Schlanke Bewerbung – schnell auszufüllen. Der Kern ist die Geschichte.
 model Application {
-  id                String            @id @default(cuid())
-  applicationNumber String            @unique // z. B. WS-DE-2026-0001
+  id                String   @id @default(cuid())
+  applicationNumber String   @unique // z. B. WS-DE-2026-0001
 
-  // Schritt 1 – Über Sie
   firstName         String
   lastName          String
-  birthDate         String // als ISO-String gespeichert (Datenminimierung, kein exaktes Datum nötig)
+  email             String
+  phone             String
   city              String
   state             String // Bundesland
-  country           String            @default("Deutschland")
-  phone             String
-  email             String
-
-  // Schritt 2 – Ihre Situation
-  maritalStatus     String
-  occupation        String
-  householdSize     Int
+  applicantType     String // Familie / Einzelperson / Organisation / Soziales Projekt
   hasLicense        Boolean
-  hadMotorhome      Boolean
+  story             String   @db.Text // die persönliche Geschichte
 
-  // Schritt 3 – Ihre Geschichte
-  motivation        String            @db.Text // Warum möchten Sie dieses Wohnmobil erhalten?
-  plannedUse        String            @db.Text // Wie würden Sie es nutzen?
-  impact            String            @db.Text // Was würde sich verändern?
-  aboutYou          String            @db.Text // Über sich / Familie / Projekt
+  createdAt         DateTime @default(now())
 
-  // Schritt 4 – Verantwortung
-  canMaintain       Boolean
-  canInsure         TriState
-  willingToTalk     Boolean
-  canOrganizeHandover TriState
-
-  // Verwaltung
-  status            ApplicationStatus @default(NEU)
-  internalNotes     String?           @db.Text
-
-  createdAt         DateTime          @default(now())
-  updatedAt         DateTime          @updatedAt
-
-  @@index([status])
   @@index([createdAt])
 }
 

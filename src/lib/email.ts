@@ -78,32 +78,14 @@ export interface FullApplicationEmail {
   applicationNumber: string;
   firstName: string;
   lastName: string;
-  birthDate: string;
+  email: string;
+  phone: string;
   city: string;
   state: string;
-  country: string;
-  phone: string;
-  email: string;
-  maritalStatus: string;
-  occupation: string;
-  householdSize: number;
+  applicantType: string;
   hasLicense: boolean;
-  hadMotorhome: boolean;
-  motivation: string;
-  plannedUse: string;
-  impact: string;
-  aboutYou: string;
-  canMaintain: boolean;
-  canInsure: string;
-  willingToTalk: boolean;
-  canOrganizeHandover: string;
+  story: string;
 }
-
-const triLabel: Record<string, string> = {
-  JA: "Ja",
-  NEIN: "Nein",
-  INFO: "Weitere Informationen nötig",
-};
 
 function row(label: string, value: string): string {
   return `<tr>
@@ -139,31 +121,20 @@ export async function sendAdminNotification(
   const table = `<table style="width:100%;border-collapse:separate;border-spacing:0 4px;font-size:14px;">
     ${row("Bewerbungsnummer", `<strong>${escapeHtml(a.applicationNumber)}</strong>`)}
     ${row("Name", `${escapeHtml(a.firstName)} ${escapeHtml(a.lastName)}`)}
-    ${row("Geburtsdatum", escapeHtml(a.birthDate))}
-    ${row("Wohnort", `${escapeHtml(a.city)}, ${escapeHtml(a.state)}, ${escapeHtml(a.country)}`)}
+    ${row("Wohnort", `${escapeHtml(a.city)}, ${escapeHtml(a.state)}`)}
     ${row("Telefon", `<a href="tel:${escapeHtml(a.phone)}">${escapeHtml(a.phone)}</a>`)}
     ${row("E-Mail", `<a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a>`)}
-    ${row("Familiensituation", escapeHtml(a.maritalStatus))}
-    ${row("Beruf / Tätigkeit", escapeHtml(a.occupation))}
-    ${row("Personen im Haushalt", String(a.householdSize))}
+    ${row("Bewirbt sich als", escapeHtml(a.applicantType))}
     ${row("Führerschein", a.hasLicense ? "Ja" : "Nein")}
-    ${row("Bereits ein Wohnmobil?", a.hadMotorhome ? "Ja" : "Nein")}
-    ${row("Wartung & Pflege möglich?", a.canMaintain ? "Ja" : "Nein")}
-    ${row("Versicherung möglich?", triLabel[a.canInsure] ?? a.canInsure)}
-    ${row("Persönliches Gespräch?", a.willingToTalk ? "Ja" : "Nein")}
-    ${row("Übergabe organisierbar?", triLabel[a.canOrganizeHandover] ?? a.canOrganizeHandover)}
   </table>`;
 
   const html = baseTemplate(
     `Neue Bewerbung: ${escapeHtml(a.applicationNumber)}`,
     `
-      <p>Es ist eine neue Bewerbung eingegangen. Alle Angaben im Überblick:</p>
+      <p>Es ist eine neue Bewerbung eingegangen:</p>
       ${table}
       <hr style="border:none;border-top:1px solid #ece4d6;margin:20px 0;" />
-      ${block("Warum möchten Sie dieses Wohnmobil erhalten?", a.motivation)}
-      ${block("Wie würden Sie das Wohnmobil nutzen?", a.plannedUse)}
-      ${block("Was würde sich verändern?", a.impact)}
-      ${block("Über sich / Familie / Projekt", a.aboutYou)}
+      ${block("Die Geschichte", a.story)}
       <hr style="border:none;border-top:1px solid #ece4d6;margin:20px 0;" />
       <p style="font-size:13px;color:#6a7075;">Um zu antworten, schreiben Sie einfach direkt auf diese E-Mail – sie geht an ${escapeHtml(a.firstName)}.</p>
     `,

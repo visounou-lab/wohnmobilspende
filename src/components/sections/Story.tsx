@@ -36,7 +36,7 @@ export function Story() {
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-green">
             Persönlich
           </p>
-          <h2 className="text-3xl font-bold sm:text-4xl">Meine Geschichte</h2>
+          <h2 className="gold-divider text-3xl font-bold sm:text-4xl">Meine Geschichte</h2>
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink">
             {paragraphs.map((p, i) => (
               <p key={i} className={i === 4 || i === 6 ? "font-medium text-navy" : ""}>

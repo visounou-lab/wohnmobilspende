@@ -49,6 +49,19 @@ export function Hero() {
               Meine Geschichte lesen
             </ButtonLink>
           </div>
+
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-beige/90">
+            {["Kostenlose Bewerbung", "Kein Verkauf", "Persönliche Auswahl"].map(
+              (item) => (
+                <li key={item} className="flex items-center gap-2">
+                  <span aria-hidden className="text-gold-soft">
+                    ✓
+                  </span>
+                  {item}
+                </li>
+              ),
+            )}
+          </ul>
         </div>
       </div>
     </section>

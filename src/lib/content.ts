@@ -9,16 +9,31 @@ export const SITE = {
   tagline: "Ein privates solidarisches Projekt von Elisabeth",
 };
 
+// Bewusst schlanke Navigation – nur die wichtigsten Ankerpunkte.
 export const NAV_LINKS = [
-  { href: "#start", label: "Startseite" },
+  { href: "#geschichte", label: "Geschichte" },
+  { href: "#wohnmobil", label: "Das Wohnmobil" },
+  { href: "#galerie", label: "Galerie" },
+  { href: "#faq", label: "Fragen" },
+  { href: "#kontakt", label: "Kontakt" },
+] as const;
+
+// Vollständige Liste (u. a. für den Footer).
+export const FOOTER_LINKS = [
   { href: "#geschichte", label: "Meine Geschichte" },
   { href: "#wohnmobil", label: "Das Wohnmobil" },
   { href: "#galerie", label: "Galerie" },
-  { href: "#fuer-wen", label: "Für wen?" },
   { href: "#bewerbung", label: "Bewerbung" },
   { href: "#weitere-spenden", label: "Weitere Spenden" },
   { href: "#faq", label: "Fragen & Antworten" },
-  { href: "#kontakt", label: "Kontakt" },
+] as const;
+
+// Auswahl „Ich bewerbe mich als …“ (entspricht dem Abschnitt „Für wen?“).
+export const APPLICANT_TYPES = [
+  "Familie",
+  "Einzelperson",
+  "Organisation / Verein",
+  "Soziales Projekt",
 ] as const;
 
 export const GERMAN_STATES = [
@@ -130,33 +145,8 @@ export const FAQ_ITEMS = [
   },
 ];
 
-// Statusbezeichnungen für das Admin-Dashboard.
-export const APPLICATION_STATUS_LABELS: Record<string, string> = {
-  NEU: "Neue Bewerbungen",
-  IN_PRUEFUNG: "In Prüfung",
-  KONTAKT: "Kontakt aufnehmen",
-  VORAUSWAHL: "Vorauswahl",
-  NICHT_AUSGEWAEHLT: "Nicht ausgewählt",
-  AUSGEWAEHLT: "Ausgewählt",
-};
-
-export const APPLICATION_STATUS_ORDER = [
-  "NEU",
-  "IN_PRUEFUNG",
-  "KONTAKT",
-  "VORAUSWAHL",
-  "AUSGEWAEHLT",
-  "NICHT_AUSGEWAEHLT",
-] as const;
-
 export const DONATION_STATUS_LABELS: Record<string, string> = {
   VERFUEGBAR: "Verfügbar",
   IN_VERMITTLUNG: "In Vermittlung",
   VERGEBEN: "Vergeben",
-};
-
-export const TRISTATE_LABELS: Record<string, string> = {
-  JA: "Ja",
-  NEIN: "Nein",
-  INFO: "Weitere Informationen nötig",
 };

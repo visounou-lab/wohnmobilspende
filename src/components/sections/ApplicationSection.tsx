@@ -7,7 +7,7 @@ export function ApplicationSection() {
       <SectionHeading
         eyebrow="Bewerbung"
         title="Ihre Bewerbung"
-        intro="Nehmen Sie sich Zeit. Ihre Geschichte und Ihre Beweggründe sind wichtiger als ein perfekt ausgefülltes Formular. Alle Angaben werden vertraulich behandelt."
+        intro="In wenigen Minuten ausgefüllt. Wichtiger als ein perfektes Formular ist Ihre Geschichte. Alle Angaben werden vertraulich behandelt."
         center
       />
       <div className="mb-8 rounded-xl bg-green/8 px-5 py-4 text-center text-sm text-green-deep">

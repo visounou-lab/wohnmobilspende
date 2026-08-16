@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { NAV_LINKS, SITE } from "@/lib/content";
+import { FOOTER_LINKS, SITE } from "@/lib/content";
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -25,7 +25,7 @@ export function Footer() {
               Navigation
             </h3>
             <ul className="mt-4 space-y-2 text-sm">
-              {NAV_LINKS.slice(0, 6).map((l) => (
+              {FOOTER_LINKS.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-beige/80 transition-colors hover:text-white">
                     {l.label}

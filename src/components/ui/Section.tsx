@@ -15,7 +15,7 @@ export function Section({
   children,
 }: SectionProps) {
   return (
-    <section id={id} className={cn("scroll-mt-20 py-20 sm:py-24", className)}>
+    <section id={id} className={cn("reveal scroll-mt-20 py-20 sm:py-24", className)}>
       <div className={cn("mx-auto w-full max-w-6xl px-5 sm:px-8", containerClassName)}>
         {children}
       </div>
@@ -45,8 +45,10 @@ export function SectionHeading({
           {eyebrow}
         </p>
       )}
-      <h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>
-      {intro && <p className="mt-4 text-lg leading-relaxed text-ink-soft">{intro}</p>}
+      <h2 className={cn("gold-divider text-3xl font-bold sm:text-4xl", center && "is-centered")}>
+        {title}
+      </h2>
+      {intro && <p className="mt-6 text-lg leading-relaxed text-ink-soft">{intro}</p>}
     </div>
   );
 }

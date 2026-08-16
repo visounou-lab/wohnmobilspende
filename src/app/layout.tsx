@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SITE } from "@/lib/content";
+import { RevealInit } from "@/components/RevealInit";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wohnmobilspende.com";
 
@@ -74,6 +75,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <RevealInit />
       </body>
     </html>
   );
