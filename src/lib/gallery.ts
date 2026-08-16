@@ -30,15 +30,15 @@ export function getGalleryImages(): GalleryImage[] {
       continue;
     }
 
-    const sorted = files
-      .filter((f) => IMAGE_EXTENSIONS.includes(path.extname(f).toLowerCase()))
-      // Echte Fotos vor Platzhaltern anzeigen.
-      .sort((a, b) => {
-        const aPlaceholder = a.startsWith("platzhalter") ? 1 : 0;
-        const bPlaceholder = b.startsWith("platzhalter") ? 1 : 0;
-        if (aPlaceholder !== bPlaceholder) return aPlaceholder - bPlaceholder;
-        return a.localeCompare(b, "de");
-      });
+    const imageFiles = files.filter((f) =>
+      IMAGE_EXTENSIONS.includes(path.extname(f).toLowerCase()),
+    );
+
+    // Sobald echte Fotos vorhanden sind, Platzhalter automatisch ausblenden.
+    const realPhotos = imageFiles.filter((f) => !f.startsWith("platzhalter"));
+    const sorted = (realPhotos.length > 0 ? realPhotos : imageFiles).sort((a, b) =>
+      a.localeCompare(b, "de"),
+    );
 
     for (const file of sorted) {
       images.push({
