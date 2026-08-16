@@ -59,6 +59,7 @@ export const GERMAN_STATES = [
 // Grundinformationen zum Fahrzeug – nur bestätigte Angaben.
 export const VEHICLE_BASICS = [
   { label: "Hersteller", value: "Hymer" },
+  { label: "Modell", value: "MLT 580" },
   { label: "Baujahr", value: "2014" },
   { label: "Basisfahrzeug", value: "Mercedes-Benz" },
 ];
