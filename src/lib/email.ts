@@ -74,31 +74,98 @@ export async function sendApplicationConfirmation({
   });
 }
 
-interface AdminNotifyParams {
+export interface FullApplicationEmail {
   applicationNumber: string;
   firstName: string;
   lastName: string;
+  birthDate: string;
   city: string;
+  state: string;
+  country: string;
+  phone: string;
   email: string;
+  maritalStatus: string;
+  occupation: string;
+  householdSize: number;
+  hasLicense: boolean;
+  hadMotorhome: boolean;
+  motivation: string;
+  plannedUse: string;
+  impact: string;
+  aboutYou: string;
+  canMaintain: boolean;
+  canInsure: string;
+  willingToTalk: boolean;
+  canOrganizeHandover: string;
 }
 
-/** Interne Benachrichtigung an Elisabeth/Team über eine neue Bewerbung. */
+const triLabel: Record<string, string> = {
+  JA: "Ja",
+  NEIN: "Nein",
+  INFO: "Weitere Informationen nötig",
+};
+
+function row(label: string, value: string): string {
+  return `<tr>
+    <td style="padding:6px 12px;background:#F5F0E8;border-radius:6px 0 0 6px;font-weight:600;color:#17324D;white-space:nowrap;vertical-align:top;">${escapeHtml(label)}</td>
+    <td style="padding:6px 12px;color:#3F454A;">${value}</td>
+  </tr>`;
+}
+
+function block(title: string, text: string): string {
+  return `<div style="margin:14px 0;">
+    <p style="margin:0 0 4px;font-weight:600;color:#17324D;">${escapeHtml(title)}</p>
+    <p style="margin:0;white-space:pre-wrap;line-height:1.6;color:#3F454A;">${escapeHtml(text)}</p>
+  </div>`;
+}
+
+/**
+ * Vollständige Bewerbung per E-Mail an Elisabeth. Da die Verwaltung
+ * ausschließlich per E-Mail erfolgt, enthält diese Nachricht ALLE Angaben.
+ * Antworten geht direkt an die bewerbende Person (Reply-To).
+ */
 export async function sendAdminNotification(
-  params: AdminNotifyParams,
+  a: FullApplicationEmail,
 ): Promise<void> {
-  if (!resend || !ADMIN) return;
+  if (!resend) {
+    console.warn("[email] RESEND_API_KEY nicht gesetzt – Bewerbung wird NICHT per E-Mail versendet.");
+    return;
+  }
+  if (!ADMIN) {
+    console.warn("[email] EMAIL_ADMIN nicht gesetzt – Bewerbung kann nicht zugestellt werden.");
+    return;
+  }
+
+  const table = `<table style="width:100%;border-collapse:separate;border-spacing:0 4px;font-size:14px;">
+    ${row("Bewerbungsnummer", `<strong>${escapeHtml(a.applicationNumber)}</strong>`)}
+    ${row("Name", `${escapeHtml(a.firstName)} ${escapeHtml(a.lastName)}`)}
+    ${row("Geburtsdatum", escapeHtml(a.birthDate))}
+    ${row("Wohnort", `${escapeHtml(a.city)}, ${escapeHtml(a.state)}, ${escapeHtml(a.country)}`)}
+    ${row("Telefon", `<a href="tel:${escapeHtml(a.phone)}">${escapeHtml(a.phone)}</a>`)}
+    ${row("E-Mail", `<a href="mailto:${escapeHtml(a.email)}">${escapeHtml(a.email)}</a>`)}
+    ${row("Familiensituation", escapeHtml(a.maritalStatus))}
+    ${row("Beruf / Tätigkeit", escapeHtml(a.occupation))}
+    ${row("Personen im Haushalt", String(a.householdSize))}
+    ${row("Führerschein", a.hasLicense ? "Ja" : "Nein")}
+    ${row("Bereits ein Wohnmobil?", a.hadMotorhome ? "Ja" : "Nein")}
+    ${row("Wartung & Pflege möglich?", a.canMaintain ? "Ja" : "Nein")}
+    ${row("Versicherung möglich?", triLabel[a.canInsure] ?? a.canInsure)}
+    ${row("Persönliches Gespräch?", a.willingToTalk ? "Ja" : "Nein")}
+    ${row("Übergabe organisierbar?", triLabel[a.canOrganizeHandover] ?? a.canOrganizeHandover)}
+  </table>`;
 
   const html = baseTemplate(
-    "Neue Bewerbung eingegangen",
+    `Neue Bewerbung: ${escapeHtml(a.applicationNumber)}`,
     `
-      <p>Es ist eine neue Bewerbung eingegangen:</p>
-      <ul>
-        <li><strong>Nummer:</strong> ${escapeHtml(params.applicationNumber)}</li>
-        <li><strong>Name:</strong> ${escapeHtml(params.firstName)} ${escapeHtml(params.lastName)}</li>
-        <li><strong>Wohnort:</strong> ${escapeHtml(params.city)}</li>
-        <li><strong>E-Mail:</strong> ${escapeHtml(params.email)}</li>
-      </ul>
-      <p>Die vollständige Bewerbung finden Sie im geschützten Admin-Bereich.</p>
+      <p>Es ist eine neue Bewerbung eingegangen. Alle Angaben im Überblick:</p>
+      ${table}
+      <hr style="border:none;border-top:1px solid #ece4d6;margin:20px 0;" />
+      ${block("Warum möchten Sie dieses Wohnmobil erhalten?", a.motivation)}
+      ${block("Wie würden Sie das Wohnmobil nutzen?", a.plannedUse)}
+      ${block("Was würde sich verändern?", a.impact)}
+      ${block("Über sich / Familie / Projekt", a.aboutYou)}
+      <hr style="border:none;border-top:1px solid #ece4d6;margin:20px 0;" />
+      <p style="font-size:13px;color:#6a7075;">Um zu antworten, schreiben Sie einfach direkt auf diese E-Mail – sie geht an ${escapeHtml(a.firstName)}.</p>
     `,
   );
 
@@ -106,11 +173,12 @@ export async function sendAdminNotification(
     await resend.emails.send({
       from: FROM,
       to: ADMIN,
-      subject: `Neue Bewerbung: ${params.applicationNumber}`,
+      replyTo: a.email,
+      subject: `Neue Bewerbung: ${a.applicationNumber} – ${a.firstName} ${a.lastName}`,
       html,
     });
   } catch (err) {
-    console.error("[email] Admin-Benachrichtigung fehlgeschlagen:", err);
+    console.error("[email] Bewerbungs-E-Mail fehlgeschlagen:", err);
   }
 }
 

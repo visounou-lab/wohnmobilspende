@@ -87,10 +87,9 @@ export default function DatenschutzPage() {
 
       <h2 className="pt-2 font-serif text-xl text-navy">7. Cookies</h2>
       <p>
-        Diese Website verwendet ausschließlich technisch notwendige Cookies, die für
-        den sicheren Betrieb erforderlich sind (z. B. für den geschützten
-        Administrationsbereich). Es findet kein Tracking, keine Analyse und keine
-        Werbung statt.
+        Diese Website verwendet keine Tracking-, Analyse- oder Werbe-Cookies.
+        Während des Ausfüllens der Bewerbung wird Ihr Fortschritt ausschließlich
+        lokal in Ihrem Browser zwischengespeichert. Es findet kein Tracking statt.
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">8. Ihre Rechte</h2>
@@ -111,10 +110,10 @@ export default function DatenschutzPage() {
 
       <h2 className="pt-2 font-serif text-xl text-navy">9. Datensicherheit</h2>
       <p>
-        Die Übertragung erfolgt verschlüsselt über HTTPS. Der Administrationsbereich
-        ist passwortgeschützt. Wir treffen angemessene technische und organisatorische
-        Maßnahmen zum Schutz Ihrer Daten. Bewerbungen werden nicht öffentlich
-        angezeigt und nicht durch Suchmaschinen indexiert.
+        Die Übertragung erfolgt verschlüsselt über HTTPS. Bewerbungen werden
+        vertraulich per E-Mail an Elisabeth übermittelt und nicht öffentlich
+        angezeigt oder durch Suchmaschinen indexiert. Wir treffen angemessene
+        technische und organisatorische Maßnahmen zum Schutz Ihrer Daten.
       </p>
     </LegalShell>
   );

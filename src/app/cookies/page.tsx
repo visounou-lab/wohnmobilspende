@@ -17,16 +17,17 @@ export default function CookiesPage() {
         Analyse-Cookies und keine Werbung.
       </p>
 
-      <h2 className="pt-2 font-serif text-xl text-navy">Notwendige Cookies</h2>
+      <h2 className="pt-2 font-serif text-xl text-navy">Lokale Speicherung</h2>
       <ul className="list-disc space-y-2 pl-6">
-        <li>
-          <strong>Admin-Session</strong> – ermöglicht die sichere Anmeldung im
-          geschützten Administrationsbereich. Wird nur gesetzt, wenn sich eine
-          berechtigte Person anmeldet.
-        </li>
         <li>
           <strong>Cookie-Hinweis</strong> – speichert lokal in Ihrem Browser, dass Sie
           diesen Hinweis gesehen haben (kein serverseitiges Cookie).
+        </li>
+        <li>
+          <strong>Formular-Entwurf</strong> – während des Ausfüllens der Bewerbung
+          wird Ihr Fortschritt lokal in Ihrem Browser zwischengespeichert, damit
+          nichts verloren geht. Diese Daten verlassen Ihren Browser nicht, bis Sie
+          die Bewerbung absenden.
         </li>
       </ul>
 

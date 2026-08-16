@@ -17,7 +17,7 @@ Die Seite erzählt zuerst Elisabeths Geschichte, stellt dann das Wohnmobil vor u
 - [Datenbank – Neon (Postgres)](#datenbank--neon-postgres)
 - [E-Mail – Resend](#e-mail--resend)
 - [Anti-Spam – Cloudflare Turnstile](#anti-spam--cloudflare-turnstile)
-- [Admin-Bereich](#admin-bereich)
+- [Verwaltung per E-Mail](#verwaltung-per-e-mail)
 - [Echte Fotos einfügen](#echte-fotos-einfügen)
 - [Deployment auf Vercel](#deployment-auf-vercel)
 - [DNS-Konfiguration (wohnmobilspende.com)](#dns-konfiguration-wohnmobilspendecom)
@@ -35,7 +35,7 @@ Die Seite erzählt zuerst Elisabeths Geschichte, stellt dann das Wohnmobil vor u
 | E-Mail         | Resend                                        |
 | Formulare      | React Hook Form + Zod (Client- & Server-Validierung) |
 | Anti-Spam      | Cloudflare Turnstile + Honeypot + Zeitfalle + Rate-Limiting |
-| Admin-Login    | Signierte JWT-Session (jose) + bcrypt-Passworthash |
+| Verwaltung     | Vollständig per E-Mail (jede Bewerbung geht an Elisabeth) |
 | Bilder         | next/image (AVIF/WebP)                         |
 | Hosting        | Vercel                                         |
 
@@ -52,21 +52,16 @@ src/
 │   ├── layout.tsx               # Metadaten, SEO, Open Graph, JSON-LD
 │   ├── sitemap.ts / robots.ts   # SEO
 │   ├── impressum, datenschutz, cookies/   # Rechtsseiten
-│   ├── admin/                   # Geschützter Admin-Bereich
-│   │   ├── login/               # Anmeldung
-│   │   └── bewerbungen/[id]/    # Detailansicht einer Bewerbung
 │   └── api/
-│       ├── bewerbung/           # Bewerbung entgegennehmen
-│       ├── kontakt/             # Kontaktformular
-│       └── admin/               # Login/Logout, Bewerbung aktualisieren/löschen
-├── components/                  # UI, Sektionen, Admin-Komponenten
-├── lib/                         # prisma, auth, email, validation, captcha, …
-└── middleware.ts                # Schutz von /admin und /api/admin
+│       ├── bewerbung/           # Bewerbung entgegennehmen (speichert + mailt)
+│       └── kontakt/             # Kontaktformular
+├── components/                  # UI & Sektionen
+└── lib/                         # prisma, email, validation, captcha, …
 prisma/
 ├── schema.prisma                # Datenmodell (Neon/Postgres)
 └── seed.ts                      # optionales Seed
 public/images/                   # Fotos (Platzhalter -> echte Fotos)
-scripts/hash-password.ts         # Admin-Passwort-Hash erzeugen
+scripts/db-push.mjs              # wendet das Schema beim Build an
 ```
 
 ---
@@ -86,10 +81,7 @@ cp .env.example .env
 # 3. Datenbankschema anwenden (Neon)
 npm run db:push
 
-# 4. Admin-Passwort-Hash erzeugen und in .env eintragen
-npm run admin:hash -- "MeinSicheresPasswort"
-
-# 5. Entwicklungsserver starten
+# 4. Entwicklungsserver starten
 npm run dev
 ```
 
@@ -113,15 +105,15 @@ Alle Variablen sind in [`.env.example`](./.env.example) dokumentiert.
 | `DATABASE_URL`                    | ✅ | Neon Pooled-Verbindung (mit `-pooler`) für die Laufzeit |
 | `DIRECT_URL`                      | ✅ | Neon Direktverbindung (ohne `-pooler`) für `prisma db push` |
 | `NEXT_PUBLIC_SITE_URL`            | ✅ | Öffentliche URL, z. B. `https://wohnmobilspende.com` |
-| `RESEND_API_KEY`                  | ⬜ | API-Key für den E-Mail-Versand (ohne: keine Mails) |
-| `EMAIL_FROM`                      | ⬜ | Absenderadresse (verifizierte Resend-Domain) |
-| `EMAIL_ADMIN`                     | ⬜ | Interne Adresse für Benachrichtigungen |
-| `ADMIN_PASSWORD_HASH`             | ✅ | bcrypt-Hash des Admin-Passworts (`npm run admin:hash`) |
-| `AUTH_SECRET`                     | ✅ | Zufälliges Geheimnis (≥ 32 Zeichen) zum Signieren der Session |
+| `RESEND_API_KEY`                  | ✅ | API-Key für den E-Mail-Versand (ohne: keine Bewerbungs-Mails) |
+| `EMAIL_FROM`                      | ✅ | Absenderadresse (verifizierte Resend-Domain) |
+| `EMAIL_ADMIN`                     | ✅ | Adresse von Elisabeth – hierhin geht jede Bewerbung |
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY`  | ⬜ | Cloudflare-Turnstile Site-Key |
 | `TURNSTILE_SECRET_KEY`            | ⬜ | Cloudflare-Turnstile Secret-Key |
 
-`AUTH_SECRET` erzeugen: `openssl rand -base64 48`
+Die Verwaltung erfolgt vollständig per E-Mail: Jede Bewerbung wird gespeichert
+**und** vollständig an `EMAIL_ADMIN` gesendet. Daher sind die Resend-Variablen
+für den produktiven Betrieb erforderlich.
 
 **Niemals** echte Secrets committen. In Produktion werden alle Werte in den **Vercel Environment Variables** gepflegt.
 
@@ -165,18 +157,19 @@ Ist Turnstile **nicht** konfiguriert, greifen automatisch die eingebauten Schutz
 
 ---
 
-## Admin-Bereich
+## Verwaltung per E-Mail
 
-- URL: `/admin` (Login unter `/admin/login`)
-- Zugang über das Passwort, dessen bcrypt-Hash in `ADMIN_PASSWORD_HASH` liegt.
-- Funktionen: Bewerbungen nach Status filtern (Neue, In Prüfung, Kontakt aufnehmen, Vorauswahl, Ausgewählt, Nicht ausgewählt), Detailansicht mit allen Angaben, Status ändern, interne Notizen, Bewerbung löschen (DSGVO).
+Es gibt **bewusst keinen Admin-Bereich**. Die gesamte Verwaltung läuft über
+Elisabeths E-Mail-Postfach:
 
-Passwort-Hash erzeugen:
-
-```bash
-npm run admin:hash -- "MeinSicheresPasswort"
-# Ausgabe: ADMIN_PASSWORD_HASH="$2a$12$..."
-```
+- Jede abgesendete Bewerbung wird **vollständig** (alle Angaben inkl. Geschichte,
+  Kontaktdaten, Bewerbungsnummer) an `EMAIL_ADMIN` gesendet.
+- Die **Reply-To**-Adresse ist die der bewerbenden Person – Elisabeth kann also
+  direkt aus ihrem E-Mail-Programm antworten.
+- Kontaktnachrichten gehen ebenfalls an `EMAIL_ADMIN`.
+- Zusätzlich wird jede Bewerbung in der Neon-Datenbank gespeichert (Sicherung +
+  fortlaufende Bewerbungsnummer). Ein Zugriff darauf ist bei Bedarf über die
+  Neon-Konsole oder `npx prisma studio` möglich.
 
 ---
 
@@ -231,10 +224,10 @@ In Vercel eine der beiden Varianten als primär festlegen; die andere wird autom
 - **HTTPS** erzwungen (HSTS-Header), strenge Security-Header inkl. Content-Security-Policy (`next.config.ts`).
 - **Server-seitige Validierung** aller Formulare mit Zod.
 - **Rate-Limiting**, Honeypot, Zeitfalle und optional CAPTCHA.
-- **Admin** geschützt über Middleware + signierte JWT-Session; Passwort nur als bcrypt-Hash.
+- **Kein öffentlich zugänglicher Verwaltungsbereich** – keine Angriffsfläche über ein Login.
 - **Datenminimierung:** keine Ausweiskopien bei der Erstbewerbung.
 - Bewerbungen werden **nicht** öffentlich angezeigt und per `robots.txt` von der Indexierung ausgeschlossen.
-- Löschmöglichkeit für Bewerbungen im Admin-Bereich (DSGVO Art. 17).
+- Löschung von Bewerbungen jederzeit möglich (Neon-Konsole / `prisma studio`, DSGVO Art. 17).
 - **Impressum** und **Datenschutzerklärung** sind als Vorlagen enthalten und müssen von der Betreiberin mit echten Angaben vervollständigt werden (mit `[BITTE ERGÄNZEN]` markiert).
 
 ---
