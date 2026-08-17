@@ -4,7 +4,15 @@ const apiKey = process.env.RESEND_API_KEY;
 const resend = apiKey ? new Resend(apiKey) : null;
 
 const FROM = process.env.EMAIL_FROM ?? "Wohnmobilspende <onboarding@resend.dev>";
-const ADMIN = process.env.EMAIL_ADMIN;
+
+// EMAIL_ADMIN kann mehrere Empfänger enthalten (durch Komma getrennt).
+// Beispiel: "elisabeth@example.com, info@pro-adresse.de"
+const ADMIN_LIST = (process.env.EMAIL_ADMIN ?? "")
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+// Primäre Adresse (u. a. als Reply-To der Bestätigungs-E-Mail).
+const ADMIN = ADMIN_LIST[0];
 
 function baseTemplate(title: string, bodyHtml: string): string {
   return `<!doctype html>
@@ -115,7 +123,7 @@ export async function sendAdminNotification(
     console.warn("[email] RESEND_API_KEY nicht gesetzt – Bewerbung wird NICHT per E-Mail versendet.");
     return;
   }
-  if (!ADMIN) {
+  if (ADMIN_LIST.length === 0) {
     console.warn("[email] EMAIL_ADMIN nicht gesetzt – Bewerbung kann nicht zugestellt werden.");
     return;
   }
@@ -145,7 +153,7 @@ export async function sendAdminNotification(
   try {
     await resend.emails.send({
       from: FROM,
-      to: ADMIN,
+      to: ADMIN_LIST,
       replyTo: a.email,
       subject: `Neue Bewerbung: ${a.applicationNumber} – ${a.firstName} ${a.lastName}`,
       html,
@@ -166,7 +174,7 @@ interface ContactNotifyParams {
 export async function sendContactNotification(
   params: ContactNotifyParams,
 ): Promise<void> {
-  if (!resend || !ADMIN) return;
+  if (!resend || ADMIN_LIST.length === 0) return;
 
   const html = baseTemplate(
     "Neue Nachricht über das Kontaktformular",
@@ -183,7 +191,7 @@ export async function sendContactNotification(
   try {
     await resend.emails.send({
       from: FROM,
-      to: ADMIN,
+      to: ADMIN_LIST,
       replyTo: params.email,
       subject: `Kontakt: ${params.subject}`,
       html,
