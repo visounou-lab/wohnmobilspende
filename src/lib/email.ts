@@ -69,6 +69,8 @@ export async function sendApplicationConfirmation({
   await resend.emails.send({
     from: FROM,
     to,
+    // Antworten der bewerbenden Person landen direkt bei Elisabeth.
+    ...(ADMIN ? { replyTo: ADMIN } : {}),
     subject: "Ihre Bewerbung wurde erhalten",
     html,
   });
