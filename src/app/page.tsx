@@ -11,7 +11,7 @@ import { Transparency } from "@/components/sections/Transparency";
 import { OtherDonations, type DonationItem } from "@/components/sections/OtherDonations";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
-import { getGalleryImages } from "@/lib/gallery";
+import { getGalleryImages, getFeatureImage } from "@/lib/gallery";
 import { prisma } from "@/lib/prisma";
 
 // Alle 60 Minuten neu generieren (ISR). Bleibt bei nicht erreichbarer
@@ -45,10 +45,11 @@ async function getPublishedDonations(): Promise<DonationItem[]> {
 export default async function HomePage() {
   const images = getGalleryImages();
   const donations = await getPublishedDonations();
+  const logoSrc = getFeatureImage("logo", "");
 
   return (
     <>
-      <Navbar />
+      <Navbar logoSrc={logoSrc} />
       <main>
         <Hero />
         <Story />

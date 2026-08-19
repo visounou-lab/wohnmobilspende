@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { NAV_LINKS, SITE } from "@/lib/content";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+export function Navbar({ logoSrc }: { logoSrc?: string }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -38,11 +39,25 @@ export function Navbar() {
           href="#start"
           className="flex items-center gap-2 font-serif text-lg font-bold text-navy"
           onClick={() => setOpen(false)}
+          aria-label={SITE.name}
         >
-          <span aria-hidden className="text-gold">
-            ◈
-          </span>
-          {SITE.name}
+          {logoSrc ? (
+            <Image
+              src={logoSrc}
+              alt={SITE.name}
+              width={56}
+              height={56}
+              priority
+              className="h-11 w-auto sm:h-12"
+            />
+          ) : (
+            <>
+              <span aria-hidden className="text-gold">
+                ◈
+              </span>
+              {SITE.name}
+            </>
+          )}
         </Link>
 
         <ul className="hidden items-center gap-6 lg:flex">
