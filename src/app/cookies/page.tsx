@@ -11,10 +11,11 @@ export default function CookiesPage() {
   return (
     <LegalShell title="Cookie-Einstellungen">
       <p>
-        Diese Website ist bewusst datensparsam gestaltet. Wir verwenden
-        <strong> ausschließlich technisch notwendige Cookies</strong>, die für den
-        sicheren Betrieb der Website erforderlich sind. Es gibt kein Tracking, keine
-        Analyse-Cookies und keine Werbung.
+        Diese Website ist bewusst datensparsam gestaltet. Wir verwenden{" "}
+        <strong>technisch notwendige Cookies</strong> für den sicheren Betrieb sowie –
+        <strong> nur mit Ihrer ausdrücklichen Einwilligung</strong> – Cookies von
+        Google (Google Ads) zur Messung des Erfolgs unserer Werbung. Ohne Ihre
+        Einwilligung werden diese Google-Cookies nicht gesetzt.
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">Lokale Speicherung</h2>
@@ -31,9 +32,20 @@ export default function CookiesPage() {
         </li>
       </ul>
 
+      <h2 className="pt-2 font-serif text-xl text-navy">
+        Cookies mit Einwilligung (Google Ads)
+      </h2>
       <p>
-        Da wir keine optionalen oder werblichen Cookies einsetzen, ist keine weitere
-        Einwilligung erforderlich. Weitere Informationen finden Sie in unserer{" "}
+        Sofern Sie im Cookie-Hinweis auf „Alle akzeptieren“ klicken, setzen wir die
+        Google-Tag (Google Ads) ein, um Conversions (z. B. abgesendete Bewerbungen)
+        unserer Werbung zuzuordnen. Erst dann werden entsprechende Cookies gesetzt und
+        Daten an Google übertragen. Wählen Sie „Nur notwendige“, unterbleibt dies
+        vollständig (Google Consent Mode v2). Ihre Auswahl wird lokal in Ihrem Browser
+        gespeichert; Sie können sie durch Löschen der Websitedaten jederzeit
+        zurücksetzen.
+      </p>
+      <p>
+        Weitere Informationen finden Sie in unserer{" "}
         <Link href="/datenschutz" className="font-medium text-green underline">
           Datenschutzerklärung
         </Link>

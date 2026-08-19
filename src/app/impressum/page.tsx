@@ -18,16 +18,16 @@ export default function ImpressumPage() {
 
       <h2 className="pt-2 font-serif text-xl text-navy">Angaben gemäß § 5 DDG</h2>
       <p>
-        Elisabeth [BITTE ERGÄNZEN: vollständiger Name]
+        Elisabeth Pillwatsch
         <br />
         [BITTE ERGÄNZEN: Straße und Hausnummer]
         <br />
-        [BITTE ERGÄNZEN: PLZ, Ort, Land]
+        [BITTE ERGÄNZEN: PLZ und Ort], Österreich
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">Kontakt</h2>
       <p>
-        E-Mail: [BITTE ERGÄNZEN: kontakt@wohnmobilspende.site]
+        E-Mail: info@wohnmobilspende.site
         <br />
         Telefon: [BITTE ERGÄNZEN, optional]
       </p>
@@ -35,7 +35,7 @@ export default function ImpressumPage() {
       <h2 className="pt-2 font-serif text-xl text-navy">
         Verantwortlich für den Inhalt
       </h2>
-      <p>Elisabeth [BITTE ERGÄNZEN: Name und Anschrift wie oben]</p>
+      <p>Elisabeth Pillwatsch, Anschrift wie oben</p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">Art des Projekts</h2>
       <p>

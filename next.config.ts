@@ -18,12 +18,13 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // 'unsafe-inline' is required for Next.js runtime + Turnstile widget.
-      "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com",
+      // Google-Domains für die Google-Tag (Google Ads / Consent Mode).
+      "script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.googleadservices.com https://www.google-analytics.com",
       "style-src 'self' 'unsafe-inline'",
-      "img-src 'self' data: blob:",
+      "img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://googleads.g.doubleclick.net https://www.google.com https://www.google.de",
       "font-src 'self'",
-      "connect-src 'self' https://challenges.cloudflare.com",
-      "frame-src https://challenges.cloudflare.com",
+      "connect-src 'self' https://challenges.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://region1.google-analytics.com https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com",
+      "frame-src https://challenges.cloudflare.com https://td.doubleclick.net https://www.googletagmanager.com",
       "frame-ancestors 'none'",
       "base-uri 'self'",
       "form-action 'self'",

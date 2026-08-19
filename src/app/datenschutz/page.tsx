@@ -20,7 +20,8 @@ export default function DatenschutzPage() {
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:
         <br />
-        Elisabeth [BITTE ERGÄNZEN: Name, Anschrift, E-Mail].
+        Elisabeth Pillwatsch, [BITTE ERGÄNZEN: Anschrift], E-Mail:
+        info@wohnmobilspende.site.
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">
@@ -87,12 +88,44 @@ export default function DatenschutzPage() {
 
       <h2 className="pt-2 font-serif text-xl text-navy">7. Cookies</h2>
       <p>
-        Diese Website verwendet keine Tracking-, Analyse- oder Werbe-Cookies.
-        Während des Ausfüllens der Bewerbung wird Ihr Fortschritt ausschließlich
-        lokal in Ihrem Browser zwischengespeichert. Es findet kein Tracking statt.
+        Technisch notwendige Cookies dienen dem sicheren Betrieb. Während des
+        Ausfüllens der Bewerbung wird Ihr Fortschritt zusätzlich lokal in Ihrem
+        Browser zwischengespeichert (verlässt Ihren Browser nicht). Werbe-Cookies
+        von Google (Google Ads) setzen wir ausschließlich mit Ihrer Einwilligung –
+        siehe den folgenden Abschnitt.
       </p>
 
-      <h2 className="pt-2 font-serif text-xl text-navy">8. Ihre Rechte</h2>
+      <h2 className="pt-2 font-serif text-xl text-navy">
+        8. Google Ads (Conversion-Messung, nur mit Einwilligung)
+      </h2>
+      <p>
+        Zur Messung des Erfolgs unserer Online-Werbung setzen wir – ausschließlich
+        nach Ihrer Einwilligung – die Google-Tag des Dienstes „Google Ads“ ein.
+        Anbieter ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4,
+        Irland. Dabei können Informationen (u. a. eine Cookie-ID, IP-Adresse,
+        Angaben zur ausgelösten Aktion) an Google übertragen und teilweise in
+        Drittländer (z. B. USA) übermittelt werden.
+      </p>
+      <p>
+        Wir verwenden den <strong>Google Consent Mode v2</strong>: Ohne Ihre
+        Einwilligung ist die Einwilligung standardmäßig auf „abgelehnt“ gesetzt und es
+        werden keine Werbe-Cookies gesetzt bzw. keine personenbezogenen Daten zu
+        Werbezwecken übertragen. Rechtsgrundlage ist Ihre Einwilligung (Art. 6 Abs. 1
+        lit. a DSGVO, § 25 Abs. 1 TDDDG). Sie können Ihre Einwilligung jederzeit mit
+        Wirkung für die Zukunft widerrufen, indem Sie die Websitedaten in Ihrem
+        Browser löschen. Weitere Informationen:{" "}
+        <a
+          href="https://policies.google.com/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-medium text-green underline"
+        >
+          policies.google.com/privacy
+        </a>
+        .
+      </p>
+
+      <h2 className="pt-2 font-serif text-xl text-navy">9. Ihre Rechte</h2>
       <p>Sie haben jederzeit das Recht auf:</p>
       <ul className="list-disc space-y-1 pl-6">
         <li>Auskunft über Ihre gespeicherten Daten (Art. 15 DSGVO)</li>
@@ -105,10 +138,10 @@ export default function DatenschutzPage() {
       </ul>
       <p>
         Zur Ausübung Ihrer Rechte oder zur Löschung Ihrer Bewerbung genügt eine
-        formlose Nachricht an [BITTE ERGÄNZEN: E-Mail-Adresse].
+        formlose Nachricht an info@wohnmobilspende.site.
       </p>
 
-      <h2 className="pt-2 font-serif text-xl text-navy">9. Datensicherheit</h2>
+      <h2 className="pt-2 font-serif text-xl text-navy">10. Datensicherheit</h2>
       <p>
         Die Übertragung erfolgt verschlüsselt über HTTPS. Bewerbungen werden
         vertraulich per E-Mail an Elisabeth übermittelt und nicht öffentlich

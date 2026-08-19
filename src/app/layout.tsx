@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SITE } from "@/lib/content";
 import { RevealInit } from "@/components/RevealInit";
+import { GoogleTag } from "@/components/GoogleTag";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://wohnmobilspende.site";
 
@@ -69,6 +70,7 @@ export default function RootLayout({
         />
         {children}
         <RevealInit />
+        <GoogleTag />
       </body>
     </html>
   );
