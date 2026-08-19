@@ -27,6 +27,8 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  // Das Open-Graph-Bild wird über die Datei app/opengraph-image.png
+  // bereitgestellt (Next.js Dateikonvention) – daher hier keine images-Liste.
   openGraph: {
     type: "website",
     locale: "de_DE",
@@ -34,20 +36,11 @@ export const metadata: Metadata = {
     siteName: SITE.name,
     title: SITE.title,
     description: SITE.description,
-    images: [
-      {
-        url: "/og.svg",
-        width: 1200,
-        height: 630,
-        alt: "Wohnmobilspende – Ein Wohnmobil. Eine Geschichte. Eine zweite Chance.",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
-    images: ["/og.svg"],
   },
   robots: {
     index: true,

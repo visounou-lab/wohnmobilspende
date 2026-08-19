@@ -42,14 +42,17 @@ export function Navbar({ logoSrc }: { logoSrc?: string }) {
           aria-label={SITE.name}
         >
           {logoSrc ? (
-            <Image
-              src={logoSrc}
-              alt={SITE.name}
-              width={56}
-              height={56}
-              priority
-              className="h-11 w-auto sm:h-12"
-            />
+            <>
+              <Image
+                src={logoSrc}
+                alt=""
+                width={48}
+                height={48}
+                priority
+                className="h-10 w-auto sm:h-11"
+              />
+              <span>{SITE.name}</span>
+            </>
           ) : (
             <>
               <span aria-hidden className="text-gold">
