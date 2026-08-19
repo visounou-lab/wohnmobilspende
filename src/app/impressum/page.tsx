@@ -9,28 +9,17 @@ export const metadata: Metadata = {
 export default function ImpressumPage() {
   return (
     <LegalShell title="Impressum">
-      <p className="rounded-lg bg-gold/10 px-4 py-3 text-sm text-[#8a6d33]">
-        Hinweis für die Betreiberin: Bitte ergänzen Sie die mit
-        <strong> [BITTE ERGÄNZEN] </strong> markierten Angaben mit Ihren echten
-        Kontaktdaten. Ein vollständiges Impressum ist in Deutschland gesetzlich
-        vorgeschrieben (§ 5 DDG / § 18 MStV).
-      </p>
-
       <h2 className="pt-2 font-serif text-xl text-navy">Angaben gemäß § 5 DDG</h2>
       <p>
         Elisabeth Pillwatsch
         <br />
-        [BITTE ERGÄNZEN: Straße und Hausnummer]
+        Seestraße 30
         <br />
-        [BITTE ERGÄNZEN: PLZ und Ort], Österreich
+        7100 Neusiedl am See, Österreich
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">Kontakt</h2>
-      <p>
-        E-Mail: info@wohnmobilspende.site
-        <br />
-        Telefon: [BITTE ERGÄNZEN, optional]
-      </p>
+      <p>E-Mail: info@wohnmobilspende.site</p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">
         Verantwortlich für den Inhalt

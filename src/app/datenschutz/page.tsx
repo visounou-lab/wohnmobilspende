@@ -9,19 +9,12 @@ export const metadata: Metadata = {
 export default function DatenschutzPage() {
   return (
     <LegalShell title="Datenschutzerklärung" updated="August 2026">
-      <p className="rounded-lg bg-gold/10 px-4 py-3 text-sm text-[#8a6d33]">
-        Hinweis für die Betreiberin: Bitte ergänzen Sie die mit
-        <strong> [BITTE ERGÄNZEN] </strong> markierten Angaben. Diese Erklärung ist
-        eine sorgfältig vorbereitete Vorlage und ersetzt keine individuelle
-        Rechtsberatung.
-      </p>
-
       <h2 className="pt-2 font-serif text-xl text-navy">1. Verantwortliche Stelle</h2>
       <p>
         Verantwortlich für die Datenverarbeitung auf dieser Website ist:
         <br />
-        Elisabeth Pillwatsch, [BITTE ERGÄNZEN: Anschrift], E-Mail:
-        info@wohnmobilspende.site.
+        Elisabeth Pillwatsch, Seestraße 30, 7100 Neusiedl am See, Österreich,
+        E-Mail: info@wohnmobilspende.site.
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">
@@ -82,8 +75,8 @@ export default function DatenschutzPage() {
       <p>
         Bewerbungsdaten werden nur so lange gespeichert, wie es für die Durchführung
         und Abwicklung des Projekts erforderlich ist. Nicht ausgewählte Bewerbungen
-        werden anschließend gelöscht, spätestens jedoch nach [BITTE ERGÄNZEN: z. B. 12]
-        Monaten. Sie können die Löschung Ihrer Daten jederzeit verlangen.
+        werden anschließend gelöscht, spätestens jedoch nach 12 Monaten. Sie können
+        die Löschung Ihrer Daten jederzeit verlangen.
       </p>
 
       <h2 className="pt-2 font-serif text-xl text-navy">7. Cookies</h2>
