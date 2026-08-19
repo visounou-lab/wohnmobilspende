@@ -7,6 +7,7 @@ import { Send, CheckCircle2, Loader2 } from "lucide-react";
 import { FieldWrapper, Input, Textarea, Select, RadioGroup } from "@/components/ui/Field";
 import { Button } from "@/components/ui/Button";
 import { Turnstile } from "@/components/Turnstile";
+import { reportBewerbungConversion } from "@/components/GoogleTag";
 import { applicationSchema, type ApplicationInput } from "@/lib/validation";
 import { GERMAN_STATES, APPLICANT_TYPES } from "@/lib/content";
 
@@ -56,6 +57,11 @@ export function ApplicationForm() {
     });
     return () => sub.unsubscribe();
   }, [watch]);
+
+  // Google-Ads-Conversion melden, sobald die Bestätigung angezeigt wird.
+  useEffect(() => {
+    if (result) reportBewerbungConversion();
+  }, [result]);
 
   const storyValue = watch("story") ?? "";
 

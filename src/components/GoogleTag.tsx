@@ -12,6 +12,25 @@ declare global {
 // ID der Google-Tag (Google Ads). Über Env überschreibbar.
 const GTAG_ID = process.env.NEXT_PUBLIC_GTAG_ID ?? "AW-18369454196";
 
+// Conversion "Bewerbung abgesendet" (Google Ads). Über Env überschreibbar.
+const CONVERSION_BEWERBUNG =
+  process.env.NEXT_PUBLIC_GADS_CONVERSION_BEWERBUNG ??
+  "AW-18369454196/gOwvCMzMv9scEPTAnrdE";
+
+/**
+ * Meldet eine abgesendete Bewerbung als Google-Ads-Conversion.
+ * Wird auf der Bestätigungsseite ausgelöst. Der Consent Mode entscheidet,
+ * ob Daten mit oder ohne Cookies übertragen werden.
+ */
+export function reportBewerbungConversion() {
+  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  window.gtag("event", "conversion", {
+    send_to: CONVERSION_BEWERBUNG,
+    value: 1.0,
+    currency: "USD",
+  });
+}
+
 /**
  * Google-Tag (Google Ads) mit Consent Mode v2.
  *
