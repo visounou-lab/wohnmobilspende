@@ -19,17 +19,17 @@ export function Story() {
       <div className="grid items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
         <div className="order-2 lg:order-1">
           <div className="relative mx-auto max-w-md overflow-hidden rounded-[var(--radius-card)] shadow-[var(--shadow-soft)]">
-            <div className="relative aspect-[4/5]">
+            <div className="relative aspect-square">
               <Image
                 src={portrait}
-                alt="Elisabeth"
+                alt="Elisabeth Pillwatsch"
                 fill
                 sizes="(max-width: 1024px) 90vw, 40vw"
-                className="object-cover"
+                className="object-cover object-center"
               />
             </div>
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy/70 to-transparent p-5">
-              <p className="font-serif text-lg text-white">Elisabeth, 78</p>
+              <p className="font-serif text-lg text-white">Elisabeth Pillwatsch</p>
             </div>
           </div>
         </div>
