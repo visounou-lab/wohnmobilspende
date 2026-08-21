@@ -3,28 +3,33 @@
 export const SITE = {
   name: "Wohnmobilspende",
   domain: "wohnmobilspende.site",
-  title: "Hymer Wohnmobil für einen guten Zweck | Wohnmobilspende",
+  title: "Wohnmobilspende | Eine karitative Initiative von Elisabeth",
   description:
-    "Elisabeth möchte ihrem Hymer Wohnmobil eine zweite Zukunft geben und sucht einen verantwortungsvollen Menschen, eine Familie oder Organisation in Deutschland.",
-  tagline: "Ein privates solidarisches Projekt von Elisabeth",
+    "Elisabeth verschenkt ihr Wohnmobil an einen Menschen, für den es eine echte zweite Chance bedeuten kann. Eine private Hilfsinitiative aus Nächstenliebe und Solidarität.",
+  tagline: "Eine karitative Initiative von Elisabeth",
 };
+
+// Christliche Gemeinschaft (nur im Kontext von Elisabeths persönlichem Weg).
+export const COMMUNITY =
+  "Evangelische Tochtergemeinde A.B. Neusiedl am See – VaterUnser-Kirche";
 
 // Bewusst schlanke Navigation – nur die wichtigsten Ankerpunkte.
 export const NAV_LINKS = [
-  { href: "#geschichte", label: "Geschichte" },
+  { href: "#initiative", label: "Die Initiative" },
+  { href: "#geschichte", label: "Elisabeths Geschichte" },
   { href: "#wohnmobil", label: "Das Wohnmobil" },
-  { href: "#galerie", label: "Galerie" },
+  { href: "#ablauf", label: "Ablauf" },
   { href: "#faq", label: "Fragen" },
   { href: "#kontakt", label: "Kontakt" },
 ] as const;
 
 // Vollständige Liste (u. a. für den Footer).
 export const FOOTER_LINKS = [
-  { href: "#geschichte", label: "Meine Geschichte" },
+  { href: "#initiative", label: "Die Initiative" },
+  { href: "#geschichte", label: "Elisabeths Geschichte" },
   { href: "#wohnmobil", label: "Das Wohnmobil" },
-  { href: "#galerie", label: "Galerie" },
+  { href: "#ablauf", label: "Ablauf" },
   { href: "#bewerbung", label: "Bewerbung" },
-  { href: "#weitere-spenden", label: "Weitere Spenden" },
   { href: "#faq", label: "Fragen & Antworten" },
 ] as const;
 
@@ -94,27 +99,84 @@ export const GALLERY_CATEGORIES = [
 
 export const AUDIENCE = [
   {
-    title: "Eine Familie",
-    text: "Eine Familie, für die das Wohnmobil eine echte Hilfe oder neue Möglichkeit darstellen kann.",
+    title: "Eine Familie in einer schwierigen Phase",
+    text: "Eine Familie, für die das Wohnmobil eine echte Entlastung oder eine neue Möglichkeit bedeuten kann.",
   },
   {
-    title: "Eine Einzelperson",
-    text: "Ein Mensch, dessen persönliche Situation und Zukunftspläne nachvollziehbar sind.",
+    title: "Ein Mensch vor einem Neuanfang",
+    text: "Ein Mensch, dessen persönliche Situation nachvollziehbar ist und der einen ehrlichen Neustart sucht.",
   },
   {
-    title: "Eine Organisation",
-    text: "Ein Verein, eine Initiative oder gemeinnützige Organisation mit einem konkreten Projekt.",
+    title: "Ein glaubwürdiges Lebensprojekt",
+    text: "Ein Vorhaben – auch eines Vereins oder einer Initiative –, bei dem das Wohnmobil sinnvoll und langfristig hilft.",
   },
   {
-    title: "Ein soziales Projekt",
-    text: "Ein Projekt, bei dem das Wohnmobil sinnvoll und langfristig eingesetzt werden kann.",
+    title: "Eine besondere soziale Situation",
+    text: "Eine menschliche Lage, in der ein Wohnmobil konkret Halt, Freiheit oder einen Zufluchtsort geben kann.",
+  },
+];
+
+// „Mehr als ein Wohnmobil“ – was das Fahrzeug bedeuten kann.
+export const INITIATIVE_MEANINGS = [
+  {
+    title: "Freiheit",
+    text: "Die Möglichkeit, unterwegs zu sein, durchzuatmen und wieder nach vorne zu blicken.",
+  },
+  {
+    title: "Ein Zufluchtsort",
+    text: "Ein geschützter Raum – manchmal sogar eine vorübergehende Lösung in einer schweren Zeit.",
+  },
+  {
+    title: "Neue Erinnerungen",
+    text: "Gemeinsame Momente, Reisen und Erlebnisse, die bleiben.",
+  },
+  {
+    title: "Ein Neuanfang",
+    text: "Die Chance, ein neues Kapitel zu beginnen und Pläne wieder aufzunehmen.",
+  },
+];
+
+// Werte, die aus Elisabeths Engagement in der Gemeinschaft geblieben sind.
+export const VALUES = [
+  "Nächstenliebe",
+  "Verantwortung",
+  "Mitgefühl",
+  "Gemeinschaft",
+  "Hoffnung",
+] as const;
+
+// Ablauf – „Wie wird entschieden?“
+export const PROCESS_STEPS = [
+  {
+    title: "Bewerbung",
+    text: "Sie schildern Ihre Situation und was das Wohnmobil für Sie oder Ihre Familie bedeuten würde.",
+  },
+  {
+    title: "Persönliche Prüfung",
+    text: "Jede Bewerbung wird einzeln und mit Sorgfalt angesehen – die Geschichte zählt mehr als das Formular.",
+  },
+  {
+    title: "Gespräch",
+    text: "Ausgewählte Bewerberinnen und Bewerber können für einen persönlichen Austausch kontaktiert werden.",
+  },
+  {
+    title: "Auswahl",
+    text: "Entscheidend sind die menschliche Situation und der geplante Umgang mit dem Wohnmobil – kein finanzielles Gebot.",
+  },
+  {
+    title: "Übergabe",
+    text: "Die Übergabe wird transparent organisiert: Eigentumsübertragung, Fahrzeugpapiere, Zulassung, Versicherung und Transport werden ordnungsgemäß geregelt.",
   },
 ];
 
 export const FAQ_ITEMS = [
   {
     q: "Wird das Wohnmobil wirklich verschenkt?",
-    a: "Ja. Elisabeth und ihr verstorbener Ehemann hatten den Wunsch, ihr Wohnmobil für einen sozialen und humanitären Zweck einzusetzen. Heute möchte Elisabeth diesem Wunsch nachkommen und das Fahrzeug einem Menschen, einer Familie oder Organisation anvertrauen, die es wirklich benötigt. Es handelt sich nicht um einen Verkauf.",
+    a: "Ja. Aus christlicher Nächstenliebe möchte Elisabeth ihr Wohnmobil nicht verkaufen, sondern einem Menschen oder einer Familie schenken, für die es einen echten Neuanfang bedeuten kann. Diese Hilfsinitiative ist aus vielen Jahren des Engagements in der christlichen Gemeinschaft entstanden. Es handelt sich nicht um einen Verkauf.",
+  },
+  {
+    q: "Steht die Evangelische Kirche hinter dem Projekt?",
+    a: "Diese Initiative wird privat von Elisabeth getragen. Sie ist von christlichen Werten und ihrem langjährigen Engagement in der evangelischen Gemeinschaft in Neusiedl am See geprägt – sie ist jedoch kein offizielles Angebot der Evangelischen Kirche, sofern nicht ausdrücklich anders angegeben.",
   },
   {
     q: "Kostet die Bewerbung etwas?",

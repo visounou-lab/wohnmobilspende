@@ -2,10 +2,13 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CookieBanner } from "@/components/CookieBanner";
 import { Hero } from "@/components/sections/Hero";
+import { Initiative } from "@/components/sections/Initiative";
 import { Story } from "@/components/sections/Story";
+import { Values } from "@/components/sections/Values";
 import { Vehicle } from "@/components/sections/Vehicle";
 import { Gallery } from "@/components/sections/Gallery";
 import { Audience } from "@/components/sections/Audience";
+import { Process } from "@/components/sections/Process";
 import { ApplicationSection } from "@/components/sections/ApplicationSection";
 import { Transparency } from "@/components/sections/Transparency";
 import { OtherDonations, type DonationItem } from "@/components/sections/OtherDonations";
@@ -52,10 +55,13 @@ export default async function HomePage() {
       <Navbar logoSrc={logoSrc} />
       <main>
         <Hero />
+        <Initiative />
         <Story />
+        <Values />
         <Vehicle />
         <Gallery images={images} />
         <Audience />
+        <Process />
         <ApplicationSection />
         <Transparency />
         <OtherDonations donations={donations} />

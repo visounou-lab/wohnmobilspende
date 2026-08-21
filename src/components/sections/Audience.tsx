@@ -8,9 +8,9 @@ export function Audience() {
   return (
     <Section id="fuer-wen" className="bg-beige">
       <SectionHeading
-        eyebrow="Für wen?"
-        title="Ich suche nicht den perfekten Bewerber. Ich suche den richtigen Menschen."
-        intro="Es gibt viele Wege, wie das Wohnmobil sinnvoll weiterleben kann. Vielleicht ist einer davon Ihrer."
+        eyebrow="Wer kann sich bewerben?"
+        title="Nicht der perfekte Bewerber – der richtige Mensch."
+        intro="Bewerben können sich Menschen und Familien, für die das Wohnmobil den Alltag wirklich verändern könnte. Entscheidend ist die menschliche Situation, nicht eine bestimmte Kategorie."
       />
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

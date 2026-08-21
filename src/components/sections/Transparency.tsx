@@ -2,9 +2,10 @@ import { ShieldCheck } from "lucide-react";
 import { Section } from "@/components/ui/Section";
 
 const points = [
+  "Das Wohnmobil wird nicht verkauft – es soll verschenkt werden.",
   "Für das Absenden einer Bewerbung wird kein Geld verlangt.",
-  "Eine Zahlung erhöht nicht die Chance, ausgewählt zu werden.",
-  "Die Auswahl erfolgt aufgrund der persönlichen Situation, der Geschichte und des geplanten Umgangs mit dem Wohnmobil.",
+  "Eine Zahlung erhöht nicht die Chance, ausgewählt zu werden – es ist kein kommerzieller Wettbewerb.",
+  "Die Auswahl erfolgt menschlich und transparent: nach der persönlichen Situation, der Geschichte und dem geplanten Umgang mit dem Wohnmobil.",
 ];
 
 export function Transparency() {
@@ -15,7 +16,7 @@ export function Transparency() {
           <ShieldCheck size={28} />
         </span>
         <h2 className="text-3xl font-bold text-white sm:text-4xl">
-          Ein Projekt, das auf Vertrauen basiert
+          Eine Spende mit Verantwortung
         </h2>
         <ul className="mx-auto mt-8 max-w-2xl space-y-4 text-left">
           {points.map((p) => (

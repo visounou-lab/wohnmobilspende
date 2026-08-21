@@ -4,12 +4,12 @@ import { getFeatureImage } from "@/lib/gallery";
 
 const paragraphs = [
   "Mein Name ist Elisabeth. Ich bin 78 Jahre alt und österreichische Staatsbürgerin.",
-  "Mein verstorbener Ehemann war Deutscher. Gemeinsam hatten wir den Wunsch, unser Wohnmobil für Reisen mit einem sozialen und humanitären Zweck zu nutzen.",
-  "Leider kam das Leben anders.",
-  "Nach dem Tod meines Mannes und aufgrund persönlicher und gesundheitlicher Umstände konnte ich diesen gemeinsamen Wunsch nicht mehr verwirklichen.",
-  "Heute möchte ich nicht, dass unser Wohnmobil einfach ungenutzt bleibt. Ich wünsche mir, dass es eine zweite Zukunft bekommt.",
-  "Deshalb möchte ich es einem ehrlichen und verantwortungsbewussten Menschen, einer Familie oder einer Organisation anvertrauen, die einen wirklichen Nutzen dafür hat und bereit ist, sich langfristig darum zu kümmern.",
-  "Für mich ist nicht entscheidend, das Wohnmobil möglichst schnell weiterzugeben. Ich möchte wissen, dass es in guten Händen sein wird.",
+  "Viele Jahre lang war ich in unserer christlichen Gemeinschaft in Neusiedl am See engagiert. Diese Zeit hat mich gelehrt, dass Nächstenliebe dann am schönsten ist, wenn sie konkret wird – wenn sie einem einzelnen Menschen wirklich hilft.",
+  "Mein verstorbener Ehemann war Deutscher. Gemeinsam hatten wir den Wunsch, unser Wohnmobil für Reisen mit einem sozialen und menschlichen Zweck zu nutzen. Leider kam das Leben anders.",
+  "Nach dem Tod meines Mannes und aufgrund persönlicher und gesundheitlicher Umstände konnte ich diesen gemeinsamen Wunsch nicht mehr selbst verwirklichen.",
+  "Heute möchte ich nicht, dass unser Wohnmobil einfach ungenutzt bleibt. Ich wünsche mir, dass es einem Menschen oder einer Familie eine echte zweite Chance schenkt.",
+  "Deshalb möchte ich es aus christlicher Nächstenliebe einem ehrlichen, verantwortungsbewussten Menschen anvertrauen, für den es einen wirklichen Neuanfang bedeuten kann.",
+  "Für mich ist nicht entscheidend, das Wohnmobil möglichst schnell weiterzugeben. Ich möchte wissen, dass es in guten Händen sein wird und dort hilft, wo es am meisten gebraucht wird.",
 ];
 
 export function Story() {
@@ -36,9 +36,11 @@ export function Story() {
 
         <div className="order-1 lg:order-2">
           <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-green">
-            Persönlich
+            Elisabeths Geschichte
           </p>
-          <h2 className="gold-divider text-3xl font-bold sm:text-4xl">Meine Geschichte</h2>
+          <h2 className="gold-divider text-3xl font-bold sm:text-4xl">
+            Ein Leben geprägt von Gemeinschaft und Hilfsbereitschaft
+          </h2>
           <div className="mt-6 space-y-4 text-lg leading-relaxed text-ink">
             {paragraphs.map((p, i) => (
               <p key={i} className={i === 4 || i === 6 ? "font-medium text-navy" : ""}>

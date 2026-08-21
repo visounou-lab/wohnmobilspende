@@ -32,17 +32,21 @@ export function Hero() {
             <br />
             <span className="text-green-deep">Eine zweite Chance.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink">
-            Ich möchte unser Wohnmobil einem Menschen anvertrauen, der es wirklich
-            braucht, verantwortungsvoll damit umgeht und ihm eine neue Zukunft geben
-            kann.
+          <p className="mt-5 text-xl font-semibold text-green-deep">
+            Aus Nächstenliebe wird konkrete Hilfe.
+          </p>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink">
+            Nach vielen Jahren des Engagements in der christlichen Gemeinschaft möchte
+            Elisabeth etwas Bleibendes weitergeben. Ihr Wohnmobil soll nicht verkauft
+            werden, sondern einem Menschen oder einer Familie zugutekommen, für die es
+            einen wirklichen Neuanfang bedeuten kann.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="#bewerbung" variant="primary">
-              Jetzt bewerben
+              Für die Wohnmobilspende bewerben
             </ButtonLink>
             <ButtonLink href="#geschichte" variant="secondary">
-              Meine Geschichte lesen
+              Elisabeths Geschichte entdecken
             </ButtonLink>
           </div>
           <ul className="mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-ink-soft">

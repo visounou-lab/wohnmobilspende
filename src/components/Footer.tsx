@@ -28,8 +28,9 @@ export function Footer() {
               </p>
             )}
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-beige/80">
-              Elisabeth möchte ihrem Hymer Wohnmobil eine zweite Zukunft geben und
-              sucht einen verantwortungsvollen Menschen, eine Familie oder Organisation.
+              Diese private karitative Initiative wurde von Elisabeth ins Leben gerufen
+              und ist von christlichen Werten und ihrem langjährigen Engagement in der
+              evangelischen Gemeinschaft geprägt. Aus Nächstenliebe wird konkrete Hilfe.
             </p>
           </div>
 
@@ -77,9 +78,14 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-6 text-sm text-beige/70 sm:flex-row">
+        <p className="mt-10 border-t border-white/10 pt-6 text-xs leading-relaxed text-beige/60">
+          Die Initiative wird privat von Elisabeth getragen und ist kein offizielles
+          Angebot der Evangelischen Kirche, sofern nicht ausdrücklich anders angegeben.
+        </p>
+
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 text-sm text-beige/70 sm:flex-row">
           <p>
-            © {year} {SITE.name}. Ein privates solidarisches Projekt.
+            © {year} {SITE.name}. Eine karitative Initiative von Elisabeth.
           </p>
           <p>Kein Verkauf · Keine Verlosung · Kostenlose Bewerbung</p>
         </div>
